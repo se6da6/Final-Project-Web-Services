@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Info App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <div v-if="!showTable">
+            <button @click="fetchCapitalData">Filter by Capitals</button>
+            <button @click="fetchIndependentData">Show Independent Status</button>
+            <<label for="languageSelect">Select a Language:</label>
+            <select id="languageSelect" @change="fetchCountriesByLanguage">
+                <option value="">Select a Language</option>
+                <option v-for="lang in languages" :value="lang">{{ lang }}</option>
+            </select> 
+        </div>
+        
+        <!-- Back button for Filter by Capitals -->
+        <button v-if="showCapitalTable" @click="backToMainPage">Back</button>
+
+        <!-- Back button for Show Independent Status -->
+        <button v-if="showIndependentTable" @click="backToMainPage">Back</button>
+        <table v-if="showCapitalTable">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Capital</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(country, index) in capitalData" :key="index">
+                    <td>{{ country.country }}</td>
+                    <td>{{ country.capital }}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+
+        <table v-if="showIndependentTable">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Independent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(country, index) in independentData" :key="index">
+                    <td>{{ country.name.common }}</td>
+                    <td>{{ country.independent ? 'Yes' : 'No' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Language table -->
+        <!-- Filtered countries table -->
+        <table v-if="showLanguageTable">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Language</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(country, index) in countries" :key="index">
+                    <td>{{ country.name.common }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        
+    </div>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="app.js"></script>
+</body>
+</html>
