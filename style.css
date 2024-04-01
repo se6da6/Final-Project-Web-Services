@@ -2,10 +2,12 @@
 body {
     font-family: Arial, sans-serif;
     padding: 20px;
+    background-color: #f4f4f4;
 }
 
 h1 {
     color: #333;
+    text-align: center; 
 }
 
 ul {
@@ -15,4 +17,73 @@ ul {
 
 li {
     margin-bottom: 10px;
+}
+/* Style for main container */
+#app {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff; /* Change background color */
+    border-radius: 8px; /* Add border radius */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow */
+}
+
+/* Style for section headings */
+.section-heading {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #007bff; 
+}
+
+/* Style for form elements */
+.form-group {
+    margin-bottom: 10px;
+}
+
+/* Style for buttons */
+.button-group button {
+    margin-right: 10px;
+    padding: 10px 20px; /* Add padding */
+    background-color: #007bff; /* Change button background color */
+    color: #fff; /* Change button text color */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add transition effect */
+}
+
+.button-group button:hover {
+    background-color: #0056b3; /* Change button background color on hover */
+}
+
+/* Style for tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+table th {
+    background-color: #007bff; /* Change table header background color */
+    color: #fff; /* Change table header text color */
+}
+
+/* Style for back button */
+.back-button {
+    margin-top: 20px;
+}
+
+/* Style for input fields */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }

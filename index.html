@@ -10,13 +10,57 @@
     <div id="app">
         <h1>{{ title }}</h1>
         <div v-if="!showTable">
-            <button @click="fetchCapitalData">Filter by Capitals</button>
-            <button @click="fetchIndependentData">Show Independent Status</button>
-            <<label for="languageSelect">Select a Language:</label>
-            <select id="languageSelect" @change="fetchCountriesByLanguage">
-                <option value="">Select a Language</option>
-                <option v-for="lang in languages" :value="lang">{{ lang }}</option>
-            </select> 
+            <!-- Filter by Capital section -->
+        <div class="section">
+            <h2 class="section-heading">Filter by Capital</h2>
+            <div class="button-group">
+                <button @click="fetchCapitalData">Filter by Capitals</button>
+            </div>
+        </div>
+
+        <!-- Show Independent Status section -->
+        <div class="section">
+            <h2 class="section-heading">Show Independent Status</h2>
+            <div class="button-group">
+                <button @click="fetchIndependentData">Show Independent Status</button>
+            </div>
+        </div>
+
+        <!-- Select Language section -->
+        <div class="section">
+            <h2 class="section-heading">Select a Language</h2>
+            <div class="form-group">
+                <label for="languageSelect">Select a Language:</label>
+                <select id="languageSelect" @change="fetchCountriesByLanguage">
+                    <option value="">Select a Language</option>
+                    <option v-for="lang in languages" :value="lang">{{ lang }}</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Enter Region section -->
+        <div class="section">
+            <h2 class="section-heading">Enter a Region</h2>
+            <div class="form-group">
+                <label for="regionInput">Enter a Region:</label>
+                <input type="text" id="regionInput" v-model="region">
+            </div>
+            <div class="button-group">
+                <button @click="fetchCountriesByRegion">Fetch Countries by Region</button>
+            </div>
+        </div>
+
+        <!-- Enter Country Name section -->
+        <div class="section">
+            <h2 class="section-heading">Enter a Country Name</h2>
+            <div class="form-group">
+                <label for="countryInput">Enter a Country Name:</label>
+                <input type="text" id="countryInput" v-model="countryName">
+            </div>
+            <div class="button-group">
+                <button @click="fetchCountryFlag">Show Flag</button>
+            </div>
+        </div>
         </div>
         
         <!-- Back button for Filter by Capitals -->
@@ -24,6 +68,9 @@
 
         <!-- Back button for Show Independent Status -->
         <button v-if="showIndependentTable" @click="backToMainPage">Back</button>
+        <!-- Back button for Language page -->
+        <button v-if="showLanguageTable" @click="backToMainPage">Back</button>
+        <button v-if="showTable && !showCapitalTable && !showIndependentTable && !showLanguageTable" @click="backToMainPage">Back</button>
         <table v-if="showCapitalTable">
             <thead>
                 <tr>
@@ -54,23 +101,36 @@
                 </tr>
             </tbody>
         </table>
-        <!-- Language table -->
-        <!-- Filtered countries table -->
+        
+    <h2 v-if="selectedLanguage">{{ 'Countries Speaking ' + selectedLanguage  }}</h2>
         <table v-if="showLanguageTable">
             <thead>
                 <tr>
                     <th>Country</th>
-                    <th>Language</th>
+                    
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(country, index) in countries" :key="index">
-                    <td>{{ country.name.common }}</td>
+                <tr v-for="(country, index) in filteredCountries" :key="index">
+                    <td>{{ country.name }}</td>
                 </tr>
             </tbody>
         </table>
-
-        
+        <!-- Filter by Region table -->
+        <table v-if="showRegionTable">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(country, index) in countriesInRegion" :key="index">
+                    <td>{{ country }}</td>
+                </tr>
+            </tbody>
+        </table>
+                
+                
     </div>
     <script src="https://unpkg.com/vue@3"></script>
     <script src="app.js"></script>
