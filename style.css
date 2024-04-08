@@ -87,3 +87,9 @@ input[type="text"] {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+
+svg path {
+    cursor: pointer;
+}
+
+    
